@@ -1,0 +1,36 @@
+﻿<Window x:Class="Sotusei.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
+        xmlns:local="clr-namespace:Sotusei" 
+        xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="450">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>            
+        </Grid.ColumnDefinitions>
+        
+        <Frame Name="myFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Loaded="myFrame_Loaded"/>
+        
+        <HamburgerMenu:HamburgerMenu Grid.Column="0" Background="White" MenuIconColor="Black" SelectionIndicatorColor="Black" MenuItemForeground="Black" HorizontalAlignment="Left">
+            <HamburgerMenu:HamburgerMenuItem x:Name="Home" Icon="Image/普通の家のアイコン.png" Text="Home" PreviewMouseLeftButtonDown="Home_PreviewMouseLeftButtonDown" />
+            <HamburgerMenu:HamburgerMenuItem x:Name="Search" Icon="Image/検索用アイコン.png" Text="Search" PreviewMouseLeftButtonDown="Search_PreviewMouseLeftButtonDown"/>
+            <HamburgerMenu:HamburgerMenuItem x:Name="Account" Icon="Image/人物のアイコン.png" Text="Account" PreviewMouseLeftButtonDown="Account_PreviewMouseLeftButtonDown" />
+            <HamburgerMenu:HamburgerMenuItem x:Name="Config" Icon="Image/設定歯車アイコン.png" Text="Config" PreviewMouseLeftButtonDown="Config_PreviewMouseLeftButtonDown"/>
+        </HamburgerMenu:HamburgerMenu>
+    </Grid>
+</Window>
