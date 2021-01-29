@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sotusei"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="400" Title="SerPage" >
+      d:DesignHeight="550" d:DesignWidth="500" Title="SerPage" FontSize="20" >
 
     <Grid>
         <Grid>
@@ -25,40 +25,24 @@
                 <Image Source="Image/検索用アイコン.png"/>
             </Button>
 
-            <ListView x:Name="carReportListView" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding}"  SelectionMode="Single" SelectionChanged="carReportListView_SelectionChanged">
-                <ListView.ItemContainerStyle>
-                    <Style>
-                        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
+            <ListView x:Name="listView" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding}" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn x:Name="GamePicture" Header="画像" Width="133">
+                        <GridViewColumn Header="Picture" Width="140">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Margin="-6,-1" Source="{Binding Picture}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Width="133" Source="{Binding Picture}" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
+
                         </GridViewColumn>
-                        <GridViewColumn x:Name="createdDateColumn" Header="Name" Width="134">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox Margin="-6,-1" Text="{Binding GameName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn x:Name="pictureColumn" Header="その他" Width="80">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox Margin="-6,-1" Text="{Binding Athor, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="140" Header="Name"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Other}" Width="140" Header="Other"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-
         </Grid>
     </Grid>
 </Page>

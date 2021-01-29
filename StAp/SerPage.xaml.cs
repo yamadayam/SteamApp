@@ -27,9 +27,24 @@ namespace Sotusei {
 
         private void tbSer_Click(object sender, RoutedEventArgs e)
         {
-            //Image image = new Image();
-            //BitmapImage imageSource = new BitmapImage(new Uri("Image/普通の家のアイコン.png"));
-            
+            var consumerkey = "84578F8035947FB06BFC5FB9E4902701";
+            var userid = "76561199051966013";
+            var api = new SteamApi(consumerkey, userid);
+
+            var steamapi = api.GetUserInformation();
+
+            BitmapImage imageSource = new BitmapImage(new Uri(steamapi.response.players[0].avatarfull));
+                        
+            listView.Items.Add(new ManagedItem { Picture = imageSource, Name = "aaa" });
+
+        }
+
+        public class ManagedItem
+        {
+            public BitmapImage Picture { get; set; }
+            public string Name { get; set; }
+            public string Other { get; set; }
+
         }
 
 

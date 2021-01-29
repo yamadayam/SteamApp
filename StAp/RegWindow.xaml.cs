@@ -26,25 +26,41 @@ namespace Sotusei
 
         private void tbReg_Click(object sender, RoutedEventArgs e)
         {
-            var api = new SteamApi(tbKey.Text, tbID.Text);
-
-            var steamapi = api.GetUserInformation();
-
-            if (steamapi.response.players[0].personaname==null)
+            try
             {
-                MessageBox.Show("値が間違っています");
+                if (tbID.Text == "" || tbKey.Text == "")
+                {
+                    MessageBox.Show("値が間違っています");
+                }
+                else
+                {
+                    var api = new SteamApi(tbKey.Text, tbID.Text);
+
+                    var steamapi = api.GetUserInformation();
+
+                    if (steamapi.response.players[0].personaname == null)
+                    {
+                        MessageBox.Show("値が間違っています");
+                    }
+                    else
+                    {
+                        Information information = new Information();
+                        information.stid = tbID.Text;
+                        information.stkey = tbKey.Text;
+
+                        var win = new MainWindow();
+                        win.Show();
+
+                        Close();
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Information information = new Information();
-                information.stid = tbID.Text;
-                information.stkey = tbKey.Text;
-
-                var win = new MainWindow();
-                win.Show();
-
-                Close();
+                MessageBox.Show(ex.Message);
             }
+            
+            
         }
 
         private void Window_Closed(object sender, EventArgs e)
