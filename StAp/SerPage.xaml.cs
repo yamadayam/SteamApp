@@ -31,10 +31,11 @@ namespace Sotusei {
             var userid = "76561199051966013";
             var api = new SteamApi(consumerkey, userid);
 
-            var steamapi = api.GetUserInformation();
-
-            BitmapImage imageSource = new BitmapImage(new Uri(steamapi.response.players[0].avatarfull));
-                        
+            var steamapi = api.GetGameUserInformation();
+            var hashUrl = api.HashUrl(steamapi.response.games[0].img_icon_url
+                ,steamapi.response.games[0].appid.ToString());
+            BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
+            
             listView.Items.Add(new ManagedItem { Picture = imageSource, Name = "aaa" });
 
         }

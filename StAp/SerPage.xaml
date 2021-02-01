@@ -28,7 +28,7 @@
             <ListView x:Name="listView" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding}" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Picture" Width="140">
+                        <GridViewColumn Header="Picture" Width="140" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
