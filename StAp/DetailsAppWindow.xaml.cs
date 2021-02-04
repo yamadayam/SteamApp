@@ -10,16 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StAp {
+namespace Sotusei
+{
     /// <summary>
-    /// HomePage.xaml の相互作用ロジック
+    /// DetailsAppWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class HomePage : Page {
-        public HomePage() {
+    public partial class DetailsAppWindow : Window
+    {
+        public DetailsAppWindow()
+        {
             InitializeComponent();
+            DetailsInformation detailsInformation = DetailsInformation.GetInstace();
+            
         }
+
+        
     }
 }

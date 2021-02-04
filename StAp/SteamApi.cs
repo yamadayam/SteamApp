@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Media.Imaging;
 
-namespace Sotusei {
+namespace StAp {
     class SteamApi {
         public string ConsumerKey { get; private set; }
         public string UserId { get; private set; }
@@ -68,11 +68,13 @@ namespace Sotusei {
             return Url;
         }
 
-        //public Root GetGameList()
-        //{
+        public Root GetGameList()
+        {
+            var json = File.ReadAllText("Text/gamelist.json", Encoding.GetEncoding("UTF-8"));
 
-        //}
-        
+            return JsonConvert.DeserializeObject<Root>(json);
+        }
+
 
     }
     

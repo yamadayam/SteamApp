@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sotusei;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Sotusei
+namespace StAp
 {
     /// <summary>
     /// RegWindow.xaml の相互作用ロジック
@@ -44,9 +45,8 @@ namespace Sotusei
                     }
                     else
                     {
-                        Information information = new Information();
-                        information.stid = tbID.Text;
-                        information.stkey = tbKey.Text;
+                        Information information = Information.GetInstace();
+                        information.UpdateStatus(tbKey.Text, tbID.Text);
 
                         var win = new MainWindow();
                         win.Show();

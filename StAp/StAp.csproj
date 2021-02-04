@@ -185,6 +185,9 @@
     <Compile Include="CfPage.xaml.cs">
       <DependentUpon>CfPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetailsAppWindow.xaml.cs">
+      <DependentUpon>DetailsAppWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DynamicJson.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="HomePage.xaml.cs">
@@ -200,11 +203,16 @@
       <DependentUpon>SerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SteamApi.cs" />
+    <Compile Include="UserInformation.cs" />
     <Page Include="AcPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CfPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetailsAppWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -260,7 +268,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Text\gamelist.json" />
+    <None Include="Text\gamelist.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

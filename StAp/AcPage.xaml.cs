@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sotusei;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Sotusei {
+namespace StAp {
     /// <summary>
     /// AcPage.xaml の相互作用ロジック
     /// </summary>
@@ -23,8 +24,10 @@ namespace Sotusei {
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e) {
-            var consumerkey = "84578F8035947FB06BFC5FB9E4902701";
-            var userid = "76561199051966013";
+            Information information = Information.GetInstace();
+
+            var consumerkey = information.stkey;
+            var userid = information.stid;
             var api = new SteamApi(consumerkey, userid);
 
             var steamapi = api.GetUserInformation();

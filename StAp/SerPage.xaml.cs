@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Sotusei {
+namespace StAp {
     /// <summary>
     /// SerPage.xaml の相互作用ロジック
     /// </summary>
@@ -29,25 +29,17 @@ namespace Sotusei {
 
         private void tbSer_Click(object sender, RoutedEventArgs e)
         {
-            using (var sr = new StreamReader("Text/gamelist.json"))
-            {
-                var jsonData = sr.ReadToEnd();
-
-                var data = JsonConvert.DeserializeObject<Root>(jsonData);
-
-            }
-
-
             var consumerkey = "84578F8035947FB06BFC5FB9E4902701";
             var userid = "76561199051966013";
             var api = new SteamApi(consumerkey, userid);
 
-            var steamapi = api.GetGameUserInformation();
-            var hashUrl = api.HashUrl(steamapi.response.games[0].img_icon_url
-                ,steamapi.response.games[0].appid.ToString());
-            BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
+            var steamapi = api.GetGameList();
+
+
+            var name = steamapi.applist.apps[0].name;
+            //BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
             
-            listView.Items.Add(new ImageItem { Picture = imageSource, Name = "aaa" });
+            listView.Items.Add(new ImageItem { /*Picture = imageSource,*/ Name = name });
 
         }
 

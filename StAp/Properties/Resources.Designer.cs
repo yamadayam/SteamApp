@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sotusei.Properties {
+namespace StAp.Properties {
 
 
     /// <summary>

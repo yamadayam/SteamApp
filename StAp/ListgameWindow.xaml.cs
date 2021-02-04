@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sotusei;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Sotusei
+namespace StAp
 {
     /// <summary>
     /// ListgameWindow.xaml の相互作用ロジック
@@ -26,8 +27,9 @@ namespace Sotusei
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var consumerkey = "84578F8035947FB06BFC5FB9E4902701";
-            var userid = "76561199051966013";
+            Information information = Information.GetInstace();
+            var consumerkey = information.stkey;
+            var userid = information.stid ;
             var api = new SteamApi(consumerkey, userid);
 
             var steamapi = api.GetGameUserInformation();
@@ -37,9 +39,8 @@ namespace Sotusei
                 , steamapi.response.games[i].appid.ToString());
                 BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
 
-                listView.Items.Add(new ManagedItem { Picture = imageSource, Name = steamapi.response.games[i].appid.ToString() });
-            }
-            
+                listView.Items.Add(new ManagedItem { Picture = imageSource, Name = steamapi.response.games[i].name.ToString() });
+            }           
         }
         public class ManagedItem
         {
@@ -47,6 +48,25 @@ namespace Sotusei
             public string Name { get; set; }
             public string Other { get; set; }
 
+        }
+
+        private void listView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Information information = Information.GetInstace();
+            var consumerkey = information.stkey;
+            var userid = information.stid;
+            var api = new SteamApi(consumerkey, userid);
+            var steamapi = api.GetGameUserInformation();
+            
+            DetailsInformation detailsinformation = DetailsInformation.GetInstace();
+            var count = listView.SelectedItems.Count;
+
+            var ste = steamapi.response.games[count];
+            detailsinformation.UpdateStatus(ste.appid,ste.name
+                , ste.img_icon_url, ste.img_logo_url, ste.playtime_forever.ToString(), ste.playtime_2weeks.ToString());
+
+            var win = new DetailsAppWindow();
+            win.Show();
         }
     }
 }
