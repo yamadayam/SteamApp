@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,15 @@ namespace Sotusei {
 
         private void tbSer_Click(object sender, RoutedEventArgs e)
         {
+            using (var sr = new StreamReader("Text/gamelist.json"))
+            {
+                var jsonData = sr.ReadToEnd();
+
+                var data = JsonConvert.DeserializeObject<Root>(jsonData);
+
+            }
+
+
             var consumerkey = "84578F8035947FB06BFC5FB9E4902701";
             var userid = "76561199051966013";
             var api = new SteamApi(consumerkey, userid);
@@ -36,11 +47,11 @@ namespace Sotusei {
                 ,steamapi.response.games[0].appid.ToString());
             BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
             
-            listView.Items.Add(new ManagedItem { Picture = imageSource, Name = "aaa" });
+            listView.Items.Add(new ImageItem { Picture = imageSource, Name = "aaa" });
 
         }
 
-        public class ManagedItem
+        public class ImageItem
         {
             public BitmapImage Picture { get; set; }
             public string Name { get; set; }

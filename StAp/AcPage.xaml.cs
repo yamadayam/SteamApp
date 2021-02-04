@@ -35,5 +35,11 @@ namespace Sotusei {
             BitmapImage imageSource = new BitmapImage(new Uri(steamapi.response.players[0].avatarfull));
             tbAvatar.Source = imageSource;
         }
+
+        private void btGame_Click(object sender, RoutedEventArgs e)
+        {
+            var win = new ListgameWindow();
+            win.Show();
+        }
     }
 }

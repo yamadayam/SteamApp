@@ -46,6 +46,18 @@ namespace Sotusei {
         public int? playtime_2weeks { get; set; }
         public bool? has_community_visible_stats { get; set; }
     }
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
+    public class App
+    {
+        public int appid { get; set; }
+        public string name { get; set; }
+    }
+
+    public class Applist
+    {
+        public List<App> apps { get; set; }
+    }
+
     public class Response
     {
         public List<Player> players { get; set; }
@@ -56,6 +68,7 @@ namespace Sotusei {
     public class Root
     {
         public Response response { get; set; }
+        public Applist applist { get; set; }
     }
 
 
