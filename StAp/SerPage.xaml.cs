@@ -27,19 +27,19 @@ namespace StAp {
             
         }
 
-        private void tbSer_Click(object sender, RoutedEventArgs e)
+        private void btSer_Click(object sender, RoutedEventArgs e)
         {
             var consumerkey = "84578F8035947FB06BFC5FB9E4902701";
             var userid = "76561199051966013";
             var api = new SteamApi(consumerkey, userid);
 
-            var steamapi = api.GetGameList();
-
-
-            var name = steamapi.applist.apps[0].name;
-            //BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
             
-            listView.Items.Add(new ImageItem { /*Picture = imageSource,*/ Name = name });
+
+
+            //var name = steamapi.applist.apps[0].name;
+            ////BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
+            
+            //listView.Items.Add(new ImageItem { /*Picture = imageSource,*/ Name = name });
 
         }
 

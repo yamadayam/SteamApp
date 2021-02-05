@@ -20,8 +20,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock HorizontalAlignment="Left" Margin="10" FontSize="30" Text="Search" VerticalAlignment="Center"/>
-            <TextBox x:Name="tbName" Grid.Column="1" Margin="10" VerticalAlignment="Center" FontSize="30"/>
-            <Button x:Name="tbSer"  Grid.Column="2" Margin="7" VerticalAlignment="Center" Click="tbSer_Click">
+            <TextBox x:Name="tbTitle" Grid.Column="1" Margin="10" VerticalAlignment="Center" FontSize="30"/>
+            <Button x:Name="btSer"  Grid.Column="2" Margin="7" VerticalAlignment="Center" Click="btSer_Click">
                 <Image Source="Image/検索用アイコン.png"/>
             </Button>
 

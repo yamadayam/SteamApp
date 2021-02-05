@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Media.Imaging;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace StAp {
     class SteamApi {
@@ -75,6 +77,7 @@ namespace StAp {
             return JsonConvert.DeserializeObject<Root>(json);
         }
 
+        
 
     }
     
