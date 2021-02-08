@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Windows.Media.Imaging;
 using System.Xml;
 using System.Xml.Linq;
+using Sotusei;
 
 namespace StAp {
     class SteamApi {
@@ -46,9 +47,7 @@ namespace StAp {
         public Root GetGameUserInformation()
         {
             EndPointUrl = "https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?";
-            //var parm = new Dictionary<string, string>();
-            //parm["Key"] = ConsumerKey;
-            //parm["steamids"] = UserId;
+            
 
             var url = string.Format("{0}key={1}&steamid={2}&include_appinfo=1", EndPointUrl, ConsumerKey, UserId);
 
@@ -77,7 +76,19 @@ namespace StAp {
             return JsonConvert.DeserializeObject<Root>(json);
         }
 
-        
+        public Root GetGameInfo(string aid)
+        {
+            EndPointUrl = "https://store.steampowered.com/api/appdetails?appids=";
+
+            var url = string.Format(EndPointUrl+ aid);
+
+            var client = new WebClient()
+            {
+                Encoding = Encoding.UTF8
+            };
+            Json = client.DownloadString(url);
+            return JsonConvert.DeserializeObject<Root>(Json);
+        }
 
     }
     
