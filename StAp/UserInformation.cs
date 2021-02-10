@@ -55,7 +55,7 @@ namespace Sotusei
         private DetailsInformation()
         {
 
-        }        
+        }
         public bool UpdateStatus(int Appid,string Name,string imgIconUrl,string imgLogoUrl,string Playtime,string Playtime2Week)
         {
             appid = Appid;

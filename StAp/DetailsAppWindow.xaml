@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sotusei"
         mc:Ignorable="d"
-        Title="DetailsAppWindow" Height="450" Width="600">
+        Title="DetailsAppWindow" Height="450" Width="600" FontSize="30" Loaded="Window_Loaded">
     <Grid>
-        <TextBlock x:Name="tbtest"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Image x:Name="imgHeder" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+        <TextBlock x:Name="tbTitle" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="10"/>
+        <TextBlock Text="総合評価:" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBlock x:Name="tbTotalReview" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <TextBlock Text="高評価:" Grid.Row="3" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="tbPositive" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="低評価:" Grid.Row="4" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="tbNegative" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

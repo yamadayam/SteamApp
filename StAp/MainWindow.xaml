@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:StAp" 
         xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="500">
+        Title="MainWindow" Height="700" Width="950">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

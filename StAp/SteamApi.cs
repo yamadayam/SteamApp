@@ -89,7 +89,18 @@ namespace StAp {
             Json = client.DownloadString(url);
             return JsonConvert.DeserializeObject<Root>(Json);
         }
+        public Root GetReviewInfo(int appid)
+        {
+            EndPointUrl = "https://store.steampowered.com/appreviews/";
+            var url = string.Format(EndPointUrl + appid.ToString() + "?json=1&l=japanese");
 
+            var client = new WebClient()
+            {
+                Encoding = Encoding.UTF8
+            };
+            Json = client.DownloadString(url);
+            return JsonConvert.DeserializeObject<Root>(Json);
+        }
     }
     
 }

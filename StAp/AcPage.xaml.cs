@@ -34,7 +34,6 @@ namespace StAp {
 
             tbSteamid.Text = steamapi.response.players[0].steamid;
             tbName.Text = steamapi.response.players[0].personaname;
-            Image image = new Image();
             BitmapImage imageSource = new BitmapImage(new Uri(steamapi.response.players[0].avatarfull));
             tbAvatar.Source = imageSource;
         }

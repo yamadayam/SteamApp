@@ -40,7 +40,7 @@ namespace StAp
                 BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
 
                 listView.Items.Add(new ManagedItem { Picture = imageSource, Name = steamapi.response.games[i].name.ToString() });
-            }           
+            }
         }
         public class ManagedItem
         {

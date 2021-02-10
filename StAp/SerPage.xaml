@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:StAp"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="450" Title="SerPage">
+      d:DesignHeight="700" d:DesignWidth="950" Title="SerPage">
 
     <Grid>
         <Grid>
@@ -20,25 +20,26 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock HorizontalAlignment="Left" Margin="10" FontSize="30" Text="Search" VerticalAlignment="Center"/>
-            <TextBox x:Name="tbTitle" Grid.Column="1" Margin="10" VerticalAlignment="Center" FontSize="30"/>
-            <Button x:Name="btSer"  Grid.Column="2" Margin="7" VerticalAlignment="Center" Click="btSer_Click" Background="White">
-                <Image Source="Image/検索用アイコン.png"/>
+            <TextBox x:Name="tbTitle" Grid.Column="1" Margin="10,14" VerticalAlignment="Center" FontSize="25" KeyDown="tbTitle_KeyDown"/>
+            <Button x:Name="btSer"  Grid.Column="2" Margin="70,10,10,11" VerticalAlignment="Center" Click="btSer_Click" Background="White" Height="42">
+                <Image Source="Image/検索用アイコン.png" Height="38" Width="40" />
             </Button>
 
-            <ListView x:Name="listView"  ItemsSource="{Binding}" Grid.Row="1" Grid.ColumnSpan="3" Margin="10" FontSize="15">
+            <ListView x:Name="listView"  ItemsSource="{Binding}" Grid.Row="1" Grid.ColumnSpan="3" Margin="10" FontSize="20"
+                      MouseDoubleClick="listView_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Picture" Width="auto" >
+                        <GridViewColumn Header="Picture" Width="120" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image x:Name="img" Source="{Binding Picture}"/>
+                                        <Image x:Name="img" Height="50" Source="{Binding Picture}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="auto" Header="Name"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Other}" Width="auto" Header="Other"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="auto" Header="Name" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Other}" Width="auto" Header="Review_Score"/>
                     </GridView>
                 </ListView.View>
             </ListView>
