@@ -23,22 +23,29 @@ namespace StAp
         public ListgameWindow()
         {
             InitializeComponent();
+            
         }
-
+        public string[,] array { get; set; }
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+        {            
             Information information = Information.GetInstace();
             var consumerkey = information.stkey;
             var userid = information.stid ;
             var api = new SteamApi(consumerkey, userid);
-
+            DetailsInformation detailsInformation = DetailsInformation.GetInstace();
             var steamapi = api.GetGameUserInformation();
+
+            array = new string[steamapi.response.game_count,2];
+
             for (int i = 0; i < steamapi.response.game_count; i++)
             {
+                array[i, 0] = steamapi.response.games[i].appid.ToString();
+                array[i, 1] = steamapi.response.games[i].name;
+
                 var hashUrl = api.HashUrl(steamapi.response.games[i].img_icon_url
                 , steamapi.response.games[i].appid.ToString());
                 BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
-
+                
                 listView.Items.Add(new ManagedItem { Picture = imageSource, Name = steamapi.response.games[i].name.ToString() });
             }
         }
@@ -51,19 +58,13 @@ namespace StAp
         }
 
         private void listView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Information information = Information.GetInstace();
-            var consumerkey = information.stkey;
-            var userid = information.stid;
-            var api = new SteamApi(consumerkey, userid);
-            var steamapi = api.GetGameUserInformation();
-            
+        {            
             DetailsInformation detailsinformation = DetailsInformation.GetInstace();
-            var count = listView.SelectedItems.Count;
+            var count = listView.SelectedIndex;
 
-            var ste = steamapi.response.games[count];
-            detailsinformation.UpdateStatus(ste.appid,ste.name
-                , ste.img_icon_url, ste.img_logo_url, ste.playtime_forever.ToString(), ste.playtime_2weeks.ToString());
+            
+
+            detailsinformation.UpdateStatus(array[count,0],array[count,1]);
 
             var win = new DetailsAppWindow();
             win.Show();

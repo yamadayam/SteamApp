@@ -20,12 +20,13 @@ namespace StAp
             InitializeComponent();
             
         }
-
+        public string[][] ga { get; set; }
         private void btSer_Click(object sender, RoutedEventArgs e)
         {
+            Information information = Information.GetInstace();
 
-            var consumerkey = "84578F8035947FB06BFC5FB9E4902701";
-            var userid = "76561199051966013";
+            var consumerkey = information.stkey;
+            var userid = information.stid;
             var api = new SteamApi(consumerkey, userid);
 
             var list = api.GetGameList();
@@ -38,7 +39,7 @@ namespace StAp
                 {
                     if (list.applist.apps[i].name.IndexOf(tbTitle.Text, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        var review = api.GetReviewInfo(list.applist.apps[i].appid);
+                        var review = api.GetReviewInfo(list.applist.apps[i].appid.ToString());
                         //var str = list.applist.apps[i].name;
                         BitmapImage imageSource = new BitmapImage(new Uri("https://steamcdn-a.akamaihd.net/steam/apps/"+ list.applist.apps[i].appid.ToString() + "/header.jpg"));
                         imageSource.DecodePixelWidth = 100;
@@ -76,18 +77,10 @@ namespace StAp
 
         private void listView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Information information = Information.GetInstace();
-            var consumerkey = information.stkey;
-            var userid = information.stid;
-            var api = new SteamApi(consumerkey, userid);
-            var steamapi = api.GetGameUserInformation();
-
             DetailsInformation detailsinformation = DetailsInformation.GetInstace();
-            var count = listView.SelectedItems.Count;
+            var count = listView.SelectedIndex;
 
-            var ste = steamapi.response.games[count];
-            detailsinformation.UpdateStatus(ste.appid, ste.name
-                , ste.img_icon_url, ste.img_logo_url, ste.playtime_forever.ToString(), ste.playtime_2weeks.ToString());
+            detailsinformation.UpdateStatus(ga[count][0],ga[count][1]);
 
             var win = new DetailsAppWindow();
             win.Show();

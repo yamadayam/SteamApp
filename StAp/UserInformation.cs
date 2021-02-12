@@ -45,25 +45,17 @@ namespace Sotusei
             }
             return instance;
         }
-        public int appid { get; set; }
+        public string appid { get; set; }
         public string name { get; set; }
-        public string img_icon_url { get; set; }
-        public string img_logo_url { get; set; }
-        public string playtime { get; set; }
-        public string playtime2week { get; set; }
 
         private DetailsInformation()
         {
 
         }
-        public bool UpdateStatus(int Appid,string Name,string imgIconUrl,string imgLogoUrl,string Playtime,string Playtime2Week)
+        public bool UpdateStatus(string Appid,string Name)
         {
             appid = Appid;
             name = Name;
-            img_icon_url = imgIconUrl;
-            img_logo_url = imgLogoUrl;
-            playtime = Playtime;
-            playtime2week = Playtime2Week;
             return true;
         }
     }

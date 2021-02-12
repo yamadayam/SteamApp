@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StAp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,13 +23,36 @@ namespace Sotusei
         public DetailsAppWindow()
         {
             InitializeComponent();
-            DetailsInformation detailsInformation = DetailsInformation.GetInstace();
+           
             
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            DetailsInformation detailsInformation = DetailsInformation.GetInstace();
 
+            BitmapImage imageSource = new BitmapImage(new Uri("https://steamcdn-a.akamaihd.net/steam/apps/" + detailsInformation.appid.ToString() + "/header.jpg"));
+
+            imgHeder.Source = imageSource;
+
+            tbTitle.Text = detailsInformation.name;
+
+            Information information = Information.GetInstace();
+
+            var consumerkey = information.stkey;
+            var userid = information.stid;
+            var api = new SteamApi(consumerkey, userid);
+
+            tbTotalReview.Text = api.GetReviewInfo(detailsInformation.appid).query_summary.review_score_desc;
+            tbPositive.Text = api.GetReviewInfo(detailsInformation.appid).query_summary.total_positive.ToString();
+            tbNegative.Text = api.GetReviewInfo(detailsInformation.appid).query_summary.total_negative.ToString();
+
+
+        }
+
+        private void cbLangage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }
