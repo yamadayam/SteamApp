@@ -7,9 +7,17 @@
         mc:Ignorable="d"
         Title="ListgameWindow" Height="450" Width="420" Loaded="Window_Loaded">
     <Grid>
-        <ListView x:Name="listView"  ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" >
-            <ListView.View>
-                <GridView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        
+        <Button x:Name="tbGameinfo" Content="ゲーム詳細情報" Margin="5" HorizontalAlignment="Right" Grid.Row="0" Click="tbGameinfo_Click" />
+        <ListView x:Name="listView" Grid.Row="1" ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" >
+            <ListView.View >
+                <GridView >
                     <GridViewColumn Header="Picture" Width="130" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -20,9 +28,11 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="130" Header="Name"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Other}" Width="130" Header="Other"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PlayTime}" Width="130" Header="PlayTime"/>
                 </GridView>
             </ListView.View>
         </ListView>
+        
+        
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sotusei"
         mc:Ignorable="d"
-        Title="DetailsAppWindow" Height="500" Width="800" FontSize="20" Loaded="Window_Loaded">
+        Title="DetailsAppWindow" Height="500" Width="800" FontSize="15" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -24,7 +24,7 @@
 
         <Image x:Name="imgHeder" Height="100" Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <TextBlock x:Name="tbTitle" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="10"/>
+        <TextBlock x:Name="tbTitle" FontSize="25" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="10"/>
         <TextBlock Text="総合評価:" Grid.Row="1"  Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
         <TextBlock x:Name="tbTotalReview" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
         
@@ -32,44 +32,18 @@
         <TextBlock x:Name="tbPositive" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
         <TextBlock Text="低評価:"  Grid.Row="4" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
         <TextBlock x:Name="tbNegative" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
+        <TextBlock Text="レビュー数" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
+        <TextBlock x:Name="tbTotal" Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
+        
 
-        <TextBlock Text="言語の選択" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-        <ComboBox Name="cbLangage" Text="言語"  Grid.Row="1" Grid.Column="2" Margin="10" SelectionChanged="cbLangage_SelectionChanged" >
-            <ComboBoxItem Content="Japanese"/>
-            <ComboBoxItem Content="English"/>
-            <ComboBoxItem Content="Spanish"/>
-            <ComboBoxItem Content="Hindi"/>
-            <ComboBoxItem Content="Arabic"/>
-            <ComboBoxItem Content="French"/>
-            <ComboBoxItem Content="All"/>
-        </ComboBox>
-
-        <DataGrid Name="dataGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="10" >
-            <DataGrid.Columns>
-
-                <DataGridTextColumn Header="SteamID"
-                                Binding="{Binding Id}" Width="auto"></DataGridTextColumn>
-
-                <DataGridTextColumn Header="プレイ時間"
-                                Binding="{Binding Title}"
-                                Width="auto">
-                </DataGridTextColumn>
-
-                <DataGridTextColumn Header="評価"
-                                Binding="{Binding Author}" Width="auto"></DataGridTextColumn>
-
-                <DataGridTextColumn Header="レビュー"
-                                Binding="{Binding Author}" Width="auto">
-                    
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="TextWrapping"
-                                Value="Wrap" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                    
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListView x:Name="listView" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2" Grid.RowSpan="4" ItemsSource="{Binding}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Width="auto" Header="ユーザーID"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PlayTime}" Width="auto" Header="通算プレイ時間"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ReviewTime}" Width="auto" Header="レビュー時プレイ時間"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

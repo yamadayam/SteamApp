@@ -45,26 +45,32 @@ namespace StAp
                 var hashUrl = api.HashUrl(steamapi.response.games[i].img_icon_url
                 , steamapi.response.games[i].appid.ToString());
                 BitmapImage imageSource = new BitmapImage(new Uri(hashUrl));
-                
-                listView.Items.Add(new ManagedItem { Picture = imageSource, Name = steamapi.response.games[i].name.ToString() });
+
+                listView.Items.Add(new ManagedItem { Picture = imageSource, Name = steamapi.response.games[i].name.ToString()
+                    ,PlayTime=steamapi.response.games[i].playtime_forever/60+"時間"});
             }
         }
         public class ManagedItem
         {
             public BitmapImage Picture { get; set; }
             public string Name { get; set; }
-            public string Other { get; set; }
+            public string PlayTime { get; set; }
 
         }
 
         private void listView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {            
+        {
+            tbGameinfo_Click(sender, e);
+        }
+
+        private void tbGameinfo_Click(object sender, RoutedEventArgs e)
+        {
             DetailsInformation detailsinformation = DetailsInformation.GetInstace();
             var count = listView.SelectedIndex;
 
-            
 
-            detailsinformation.UpdateStatus(array[count,0],array[count,1]);
+
+            detailsinformation.UpdateStatus(array[count, 0], array[count, 1]);
 
             var win = new DetailsAppWindow();
             win.Show();

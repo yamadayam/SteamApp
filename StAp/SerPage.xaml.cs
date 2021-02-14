@@ -1,5 +1,6 @@
 ﻿using Sotusei;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
@@ -20,7 +21,8 @@ namespace StAp
             InitializeComponent();
             
         }
-        public string[][] ga { get; set; }
+        public string[] appidArray { get; set; }
+        public string[] nameArray { get; set; }
         private void btSer_Click(object sender, RoutedEventArgs e)
         {
             Information information = Information.GetInstace();
@@ -28,9 +30,9 @@ namespace StAp
             var consumerkey = information.stkey;
             var userid = information.stid;
             var api = new SteamApi(consumerkey, userid);
-
+            appidArray = new string[30];
+            nameArray = new string[30];
             var list = api.GetGameList();
-
             var count = 0;
             listView.Items.Clear();
             try
@@ -39,12 +41,17 @@ namespace StAp
                 {
                     if (list.applist.apps[i].name.IndexOf(tbTitle.Text, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
+                        
                         var review = api.GetReviewInfo(list.applist.apps[i].appid.ToString());
                         //var str = list.applist.apps[i].name;
                         BitmapImage imageSource = new BitmapImage(new Uri("https://steamcdn-a.akamaihd.net/steam/apps/"+ list.applist.apps[i].appid.ToString() + "/header.jpg"));
                         imageSource.DecodePixelWidth = 100;
                         listView.Items.Add(new ImageItem { Picture=imageSource, Name = list.applist.apps[i].name ,
-                            Other=review.query_summary.review_score_desc });
+                            Other=review.query_summary.review_score_desc ,appid=list.applist.apps[i].appid.ToString() });
+
+                        appidArray[count] = list.applist.apps[i].appid.ToString();
+                        nameArray[count] = list.applist.apps[i].name;
+
                         count += 1;
                         if (count >= 20)
                         {
@@ -64,6 +71,7 @@ namespace StAp
             public BitmapImage Picture { get; set; }
             public string Name { get; set; }
             public string Other { get; set; }
+            public string appid { get; set; }
 
         }
 
@@ -77,10 +85,13 @@ namespace StAp
 
         private void listView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+
             DetailsInformation detailsinformation = DetailsInformation.GetInstace();
             var count = listView.SelectedIndex;
 
-            detailsinformation.UpdateStatus(ga[count][0],ga[count][1]);
+
+
+            detailsinformation.UpdateStatus(appidArray[count], nameArray[count]);
 
             var win = new DetailsAppWindow();
             win.Show();

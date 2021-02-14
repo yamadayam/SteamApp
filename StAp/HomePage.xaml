@@ -6,10 +6,45 @@
       xmlns:local="clr-namespace:StAp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
-      Title="HomePage">
+      Title="HomePage" Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="5" TextWrapping="Wrap"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+
+
+        <TextBlock HorizontalAlignment="Left" Grid.Row="0"  Margin="5" TextWrapping="Wrap"
                    FontSize="30" Text="Home" VerticalAlignment="Top"/>
+
+        <Button Content="Steamへ" Grid.Row="1" VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Center"
+                Height="40" Width="200" Click="Button_Click"/>
+
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2"  Margin="5" TextWrapping="Wrap"
+                   FontSize="15" Text="ランキング" VerticalAlignment="Top"/>
+
+        <ListView x:Name="listView" Grid.Row="3" FontSize="15" ItemsSource="{Binding}" Margin="5,5,5,-321">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Picture" Width="130" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Picture}" />
+                                </StackPanel>
+                            </DataTemplate>
+                            
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="130" Header="Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Other}" Width="130" Header="Other"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Page>

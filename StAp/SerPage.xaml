@@ -21,9 +21,9 @@
             <TextBlock HorizontalAlignment="Left" Margin="10" FontSize="30" Text="Search" VerticalAlignment="Center"/>
             <TextBox x:Name="tbTitle" Grid.Column="1" Margin="10,14,80,14" VerticalAlignment="Center" FontSize="25" KeyDown="tbTitle_KeyDown"/>
             <Button x:Name="btSer" BorderBrush="Transparent" Grid.Column="1" Margin="656,15,10,14" VerticalAlignment="Center" 
-                    Content="→" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center" Click="btSer_Click" Background="White" Height="34" Width="36"/>
+                    Content="→" FontSize="15" VerticalContentAlignment="Center" HorizontalAlignment="Center" Click="btSer_Click" Background="White" Height="34" Width="36"/>
 
-            <ListView x:Name="listView"  ItemsSource="{Binding}" Grid.Row="1" Grid.ColumnSpan="3" Margin="10" FontSize="20"
+            <ListView x:Name="listView"  ItemsSource="{Binding}" Grid.Row="1" Grid.ColumnSpan="3" Margin="10" FontSize="15"
                       MouseDoubleClick="listView_MouseDoubleClick">
                 <ListView.View>
                     <GridView>

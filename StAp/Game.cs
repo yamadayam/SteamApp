@@ -99,7 +99,7 @@ namespace StAp
         public string language { get; set; }
         public string review { get; set; }
         public int timestamp_created { get; set; }
-        public int timestamp_updated { get; set; }
+        //public int timestamp_updated { get; set; }
         public bool voted_up { get; set; }
         public int votes_up { get; set; }
         public int votes_funny { get; set; }

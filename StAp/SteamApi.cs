@@ -92,7 +92,7 @@ namespace StAp {
         public Root GetReviewInfo(string appid)
         {
             EndPointUrl = "https://store.steampowered.com/appreviews/";
-            var url = string.Format(EndPointUrl + appid.ToString() + "?json=1&l=japanese");
+            var url = string.Format(EndPointUrl + appid.ToString() + "?json=1");
 
             var client = new WebClient()
             {
